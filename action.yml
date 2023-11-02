@@ -9,7 +9,7 @@ inputs:
     description: 'Name of the Environment for the App to fecth values from Ssm '
     required: true
     default: 'develop'    
-   APPLICATION_NAME: 
+  APPLICATION_NAME: 
     description: 'Name of the Application/Repository for the App to fecth values from Ssm '
     required: true
     default: 'squint-dashboard-tv'  
