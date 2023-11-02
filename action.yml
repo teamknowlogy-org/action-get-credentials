@@ -25,7 +25,6 @@ runs:
           ls -lrt
           chmod +x getParameters.sh
           ./getParameters.sh "${{ input.PROJECT_NAME }}" "${{ input.APP_BRANCH_NAME }}" "${{ input.APPLICATION_NAME }}"
-
       shell: bash
 
 
