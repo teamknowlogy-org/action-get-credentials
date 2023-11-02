@@ -14,7 +14,7 @@ runs:
       with:
         repository: teamknowlogy-org/action-get-credentials@main
         path: my-tools
-        secrets: inherit
+        ref: main
    
     - run: |
           ls -lrt my-tools
