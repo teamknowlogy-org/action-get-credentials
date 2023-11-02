@@ -13,6 +13,10 @@ inputs:
     description: 'Name of the Application/Repository for the App to fecth values from Ssm '
     required: true
     default: 'squint-dashboard-tv'  
+  TOKEN:   
+    description: 'Name of the Application/Repository for the App to fecth values from Ssm '
+    required: true
+    default: ''  
 runs:
   using: "composite"
   steps:
@@ -20,6 +24,7 @@ runs:
     - uses: actions/checkout@v4
       with:
         repository: teamknowlogy/action-get-credentials
+        token: "${{inputs.TOKEN}}"
 
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash     
