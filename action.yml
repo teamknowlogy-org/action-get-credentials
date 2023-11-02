@@ -1,29 +1,21 @@
 name: 'GetParametersByAppName'
 description: 'Get all the paraters by Name of the repository'
-inputs:
-  PROJECT_NAME: 
-    description: 'Name of the Project for the App to fecth values from Ssm '
-    required: true
-    default: 'squint'
-  APP_BRANCH_NAME: 
-    description: 'Name of the Environment for the App to fecth values from Ssm '
-    required: true
-    default: 'develop'    
-  APPLICATION_NAME: 
-    description: 'Name of the Application/Repository for the App to fecth values from Ssm '
-    required: true
-    default: 'squint-dashboard-tv'  
-  TOKEN:   
-    description: 'Name of the Application/Repository for the App to fecth values from Ssm '
-    required: true
-    default: ''  
+env:
+  REPOSITORY_NAME: "${{ github.repository }}"
+  BASE_BRANCH_NAME: "${{ github.base_ref }}"
+  BRANCH_NAME: "${{ github.ref_name }}"
+  AWS_ACCESS_KEY_ID: "AKIATRI6UAXEEDD3C6NB"
+  AWS_SECRET_ACCESS_KEY: "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"
+  PROJECT_NAME: 'squint'
+  APP_BRANCH_NAME: 'develop'    
+  APPLICATION_NAME: 'squint-dashboard-tv'  
 runs:
   using: "composite"
   steps:
 
-    - uses: actions/checkout@v4
-      with:
-        repository: teamknowlogy-org/action-get-credentials@main
+  #  - uses: actions/checkout@v4
+  #    with:
+ #       repository: teamknowlogy-org/action-get-credentials@main
 
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash     
@@ -31,7 +23,6 @@ runs:
     - run: |
           ls -lrt
           chmod +x getParameters.sh
-          ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APP_BRANCH_NAME }}" "${{ inputs.APPLICATION_NAME }}"
+          ./getParameters.sh "${{ env.PROJECT_NAME }}" "${{ env.APP_BRANCH_NAME }}" "${{ env.APPLICATION_NAME }}"
       shell: bash
-
 
