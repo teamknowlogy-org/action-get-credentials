@@ -10,11 +10,10 @@ runs:
   using: "composite"
   steps:
 
-  #  - uses: actions/checkout@v4
-  #    with:
- #       repository: teamknowlogy-org/action-get-credentials@main
-
-     
+    - uses: actions/checkout@v4
+      with:
+        repository: teamknowlogy-org/action-get-credentials@main
+   
     - run: |
           ls -lrt
           chmod +x getParameters.sh
