@@ -1,0 +1,23 @@
+name: 'GetParametersByAppName'
+description: 'Get all the paraters by Name of the repository'
+inputs:
+  applicationName: 
+    description: 'Name of the repository for the App to fecth values from Ssm '
+    required: true
+    default: 'squint-dashboard-tv'
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash     
+      
+    - run: |
+          ls -lrt
+          chmod +x  getParameters.sh 
+          ./getParameters.sh
+
+      shell: bash
+
+
