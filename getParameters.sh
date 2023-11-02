@@ -6,7 +6,7 @@ region="us-east-1"
 export SSM_BASE_PATH="/$project/$environment"
 
 MATRIX="$applicationName"
-> archivoVariables.out
+> .env
 for x in $(echo $MATRIX)
 do
 	## FETCH GLOBAL VALUES
@@ -15,7 +15,7 @@ do
         echo "GETTING GLOBAL PARAMETERS FOR $SSM_PATH"
 	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value' |rev | cut -d"/" -f1 | rev |  sed  's/"//g')
 	do
-		echo "$i" >> archivoVariables.out
+		echo "$i" >> .env
 	done
 	
 	## FETCH SPECIFIC VALUES
@@ -24,9 +24,7 @@ do
 	echo "GETTING APPLICATION PARAMETERS FOR $SSM_PATH"
 	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value' |rev | cut -d"/" -f1 | rev |  sed  's/"//g')
 	do
-		echo "$i" >> archivoVariables.out
+		echo "$i" >> .env
 	done 
 
 done
-
-cat archivoVariables.out
