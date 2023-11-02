@@ -19,7 +19,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         repository: teamknowlogy/action-get-credentials@main
-      
+        token: "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"
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash     
       
