@@ -1,8 +1,5 @@
 name: 'GetParametersByAppName'
 description: 'Get all the paraters by Name of the repository'
-#env:
-#  AWS_ACCESS_KEY_ID: "AKIATRI6UAXEEDD3C6NB"
-#  AWS_SECRET_ACCESS_KEY: "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"
 inputs:
   PROJECT_NAME: 
     description: 'Name of the Project for the App to fecth values from Ssm '
