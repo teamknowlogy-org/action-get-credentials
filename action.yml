@@ -12,7 +12,7 @@ runs:
 
     - uses: actions/checkout@v4
       with:
-        repository: teamknowlogy-org/action-get-credentials@main
+        repository: teamknowlogy-org/action-get-credentials
         path: my-tools
         ref: main
    
