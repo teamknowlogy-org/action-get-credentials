@@ -14,7 +14,7 @@ runs:
       with:
         repository: teamknowlogy-org/action-get-credentials@main
         path: my-tools
-
+        set-safe-directory: false
    
     - run: |
           ls -lrt my-tools
