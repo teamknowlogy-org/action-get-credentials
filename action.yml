@@ -13,9 +13,12 @@ runs:
     - uses: actions/checkout@v4
       with:
         repository: teamknowlogy-org/action-get-credentials@main
+        path: my-tools
+
    
     - run: |
-          ls -lrt
+          ls -lrt my-tools
+          cd my-tools
           chmod +x getParameters.sh
           ./getParameters.sh "${{ env.PROJECT_NAME }}" "${{ env.APP_BRANCH_NAME }}" "${{ env.APPLICATION_NAME }}"
       shell: bash
