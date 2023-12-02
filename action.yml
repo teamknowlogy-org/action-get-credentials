@@ -37,9 +37,6 @@ runs:
           ls -lrt my-tools
           cd my-tools
           chmod +x getParameters.sh
-        #  export AWS_ACCESS_KEY_ID="${{ inputs.AWS_ACCESS_KEY_ID }}"
-        #  export AWS_SECRET_ACCESS_KEY="${{ inputs.AWS_SECRET_ACCESS_KEY }}"
-        #  export SQUINT_AWS_REGION="${{ inputs.SQUINT_AWS_REGION}}"
           ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APP_BRANCH_NAME }}" "${{ inputs.APPLICATION_NAME }}"
       shell: bash
 
