@@ -15,13 +15,13 @@ inputs:
     default: 'squint-dashboard-tv'  
   AWS_ACCESS_KEY_ID:
     description: 'Name of the Project for the App to fecth values from Ssm '
-    required: true
+    required: false
   AWS_SECRET_ACCESS_KEY:
     description: 'Name of the Environment for the App to fecth values from Ssm '
-    required: true
+    required: false
   SQUINT_AWS_REGION:
     description: 'Name of the Application/Repository for the App to fecth values from Ssm '
-    required: true
+    required: false
       
 runs:
   using: "composite"
@@ -37,9 +37,9 @@ runs:
           ls -lrt my-tools
           cd my-tools
           chmod +x getParameters.sh
-          export AWS_ACCESS_KEY_ID="${{ inputs.AWS_ACCESS_KEY_ID }}"
-          export AWS_SECRET_ACCESS_KEY="${{ inputs.AWS_SECRET_ACCESS_KEY }}"
-          export SQUINT_AWS_REGION="${{ inputs.SQUINT_AWS_REGION}}"
+        #  export AWS_ACCESS_KEY_ID="${{ inputs.AWS_ACCESS_KEY_ID }}"
+        #  export AWS_SECRET_ACCESS_KEY="${{ inputs.AWS_SECRET_ACCESS_KEY }}"
+        #  export SQUINT_AWS_REGION="${{ inputs.SQUINT_AWS_REGION}}"
           ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APP_BRANCH_NAME }}" "${{ inputs.APPLICATION_NAME }}"
       shell: bash
 
