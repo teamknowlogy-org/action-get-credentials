@@ -38,5 +38,6 @@ runs:
           cd my-tools
           chmod +x getParameters.sh
           ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APP_BRANCH_NAME }}" "${{ inputs.APPLICATION_NAME }}"
+          wc -l .env
       shell: bash
 
