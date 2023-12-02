@@ -13,7 +13,7 @@ do
 	export SSM_GLOBAL_PATH="$SSM_BASE_PATH/global"
 	export SSM_PATH="$SSM_GLOBAL_PATH"
         echo "GETTING GLOBAL PARAMETERS FOR $SSM_PATH"
-	echo "#GLOBAL PARAMETERS" >> .env
+	echo "#GLOBAL PARAMETERS"
 
 	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value' |rev | cut -d"/" -f1 | rev |  sed  's/"//g')
 	do
@@ -21,7 +21,7 @@ do
 	done
 	
 	## FETCH SPECIFIC VALUES
-        echo "#SPECIFIC PARAMETERS" >> .env
+        echo "#SPECIFIC PARAMETERS" 
         export SSM_SERVICE_PATH="$SSM_BASE_PATH/services/$x"
         export SSM_PATH="$SSM_SERVICE_PATH"
 	echo "GETTING APPLICATION PARAMETERS FOR $SSM_PATH"
