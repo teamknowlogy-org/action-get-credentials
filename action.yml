@@ -1,18 +1,15 @@
 name: 'GetParametersByAppName'
-description: 'Get all the paraters by Name of the repository'
+description: 'Get all the parameters by Name of the repository'
 inputs:
   PROJECT_NAME: 
-    description: 'Name of the Project for the App to fecth values from Ssm '
+    description: 'Name of the Project for the App to fetch values from Ssm '
     required: true
-    default: 'squint'
   APP_BRANCH_NAME: 
-    description: 'Name of the Environment for the App to fecth values from Ssm '
+    description: 'Name of the Environment for the App to fetch values from Ssm '
     required: true
-    default: 'develop'    
   APPLICATION_NAME: 
-    description: 'Name of the Application/Repository for the App to fecth values from Ssm '
+    description: 'Name of the Application/Repository for the App to fetch values from Ssm '
     required: true
-    default: 'squint-dashboard-tv'  
       
 runs:
   using: "composite"
@@ -30,5 +27,6 @@ runs:
           chmod +x getParameters.sh
           ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APP_BRANCH_NAME }}" "${{ inputs.APPLICATION_NAME }}"
           wc -l .env
+          mv .env ../
       shell: bash
 
