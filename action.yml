@@ -13,15 +13,6 @@ inputs:
     description: 'Name of the Application/Repository for the App to fecth values from Ssm '
     required: true
     default: 'squint-dashboard-tv'  
-  AWS_ACCESS_KEY_ID:
-    description: 'Name of the Project for the App to fecth values from Ssm '
-    required: false
-  AWS_SECRET_ACCESS_KEY:
-    description: 'Name of the Environment for the App to fecth values from Ssm '
-    required: false
-  SQUINT_AWS_REGION:
-    description: 'Name of the Application/Repository for the App to fecth values from Ssm '
-    required: false
       
 runs:
   using: "composite"
