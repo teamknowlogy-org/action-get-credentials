@@ -1,12 +1,14 @@
 project="$1"
-environment="$2"
-applicationName="$3"
+applicationName="$2"
 region="us-east-1"
 
-export SSM_BASE_PATH="/$project/$environment"
+export SSM_BASE_PATH="/$project"
 
 MATRIX="$applicationName"
+tempFile="tempvars.out"
 > .env
+> $tempFile
+
 for x in $(echo $MATRIX)
 do
 	## FETCH GLOBAL VALUES
@@ -17,7 +19,7 @@ do
 
 	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value' |rev | cut -d"/" -f1 | rev |  sed  's/"//g')
 	do
-		echo "$i" >> .env
+		echo "$i" >> $tempFile
 	done
 	
 	## FETCH SPECIFIC VALUES
@@ -25,9 +27,11 @@ do
         export SSM_SERVICE_PATH="$SSM_BASE_PATH/services/$x"
         export SSM_PATH="$SSM_SERVICE_PATH"
 	echo "GETTING APPLICATION PARAMETERS FOR $SSM_PATH"
-	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value'  |  sed  's/"//g' | cut -d "/"  -f6- | awk '{print $0}')
+	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value'  |  sed  's/"//g' | cut -d "/"  -f5- | awk '{print $0}')
 	do
-		echo "$i" >> .env
+		echo "$i" >> $tempFile
 	done 
+	awk -F'=' '!seen[$1]++ {print $1"="$2}' "$tempFile" > .env
+	rm $tempFile
 
 done
