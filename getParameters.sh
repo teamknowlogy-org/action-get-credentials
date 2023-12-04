@@ -4,7 +4,7 @@ region="us-east-1"
 
 export SSM_BASE_PATH="/$project"
 
-MATRIX="$applicationName"
+MATRIX="${applicationName^^}"
 tempFile="tempvars.out"
 > .env
 > $tempFile
