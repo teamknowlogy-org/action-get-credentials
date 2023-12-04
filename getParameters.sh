@@ -17,7 +17,7 @@ do
         echo "GETTING GLOBAL PARAMETERS FOR $SSM_PATH"
 	echo "#GLOBAL PARAMETERS"
 
-	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value' |rev | cut -d"/" -f1 | rev |  sed  's/"//g')
+	for i in $(aws ssm get-parameters-by-path --region $region --recursive --path "$SSM_PATH" | jq -c '.Parameters[] | .Name + "=" + .Value'  |  sed  's/"//g' | cut -d "/"  -f4- | awk '{print $0}')
 	do
 		echo "$i" >> $tempFile
 	done
