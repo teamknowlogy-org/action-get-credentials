@@ -4,9 +4,6 @@ inputs:
   PROJECT_NAME: 
     description: 'Name of the Project for the App to fetch values from Ssm '
     required: true
-  APP_BRANCH_NAME: 
-    description: 'Name of the Environment for the App to fetch values from Ssm '
-    required: true
   APPLICATION_NAME: 
     description: 'Name of the Application/Repository for the App to fetch values from Ssm '
     required: true
@@ -25,7 +22,7 @@ runs:
           ls -lrt my-tools
           cd my-tools
           chmod +x getParameters.sh
-          ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APP_BRANCH_NAME }}" "${{ inputs.APPLICATION_NAME }}"
+          ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APPLICATION_NAME }}"
           wc -l .env
           mv .env ../
       shell: bash
