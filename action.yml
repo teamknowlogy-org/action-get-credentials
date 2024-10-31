@@ -24,6 +24,6 @@ runs:
           chmod +x getParameters.sh
           ./getParameters.sh "${{ inputs.PROJECT_NAME }}" "${{ inputs.APPLICATION_NAME }}"
           wc -l .env
-          mv .env ../
+          cp .env ../
       shell: bash
 
